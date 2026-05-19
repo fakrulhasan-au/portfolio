@@ -1,0 +1,613 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Md Fakrul Hasan | Cybersecurity Portfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0a0e1a;--surface:#0f1525;--surface2:#161d30;--border:#1e2d4a;--accent:#00d4ff;--accent2:#7c3aed;--accent3:#10b981;--text:#e2e8f0;--muted:#64748b;--warn:#f59e0b;--danger:#ef4444}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:'Syne',sans-serif;line-height:1.6;overflow-x:hidden}
+body::before{content:'';position:fixed;inset:0;background-image:linear-gradient(rgba(0,212,255,0.025) 1px,transparent 1px),linear-gradient(90deg,rgba(0,212,255,0.025) 1px,transparent 1px);background-size:40px 40px;pointer-events:none;z-index:0}
+section{position:relative;z-index:1}
+nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(10,14,26,0.9);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);padding:0 2.5rem;height:56px;display:flex;align-items:center;justify-content:space-between}
+.nav-logo{font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--accent);letter-spacing:0.05em}
+.nav-logo span{color:var(--muted)}
+.nav-links{display:flex;gap:2rem}
+.nav-links a{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--muted);text-decoration:none;letter-spacing:0.1em;text-transform:uppercase;transition:color 0.2s}
+.nav-links a:hover{color:var(--accent)}
+.hero-outer{max-width:1200px;margin:0 auto}
+.hero{min-height:100vh;display:flex;align-items:center;padding:6rem 4rem 4rem;gap:4rem}
+.hero-content{flex:1}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(0,212,255,0.08);border:1px solid rgba(0,212,255,0.2);border-radius:100px;padding:6px 18px;font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--accent);letter-spacing:0.1em;margin-bottom:2rem}
+.hero-badge::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--accent3);animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:0.5;transform:scale(0.8)}}
+.hero h1{font-size:clamp(3rem,6vw,5.5rem);font-weight:800;line-height:1.05;margin-bottom:0.5rem;letter-spacing:-0.03em}
+.hero h1 .first{color:var(--text)}
+.hero h1 .last{color:transparent;background:linear-gradient(135deg,var(--accent),var(--accent2));-webkit-background-clip:text;background-clip:text}
+.hero-role{font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--accent3);margin-bottom:1.5rem}
+.hero-role::before{content:'> ';color:var(--muted)}
+.hero-desc{font-size:1.05rem;color:var(--muted);max-width:530px;margin-bottom:2.5rem;line-height:1.85}
+.hero-cta{display:flex;gap:1rem;flex-wrap:wrap}
+.btn-primary{display:inline-flex;align-items:center;gap:8px;background:var(--accent);color:var(--bg);padding:12px 28px;border-radius:6px;font-family:'JetBrains Mono',monospace;font-size:13px;font-weight:700;text-decoration:none;transition:all 0.2s}
+.btn-primary:hover{background:#00b8d9;transform:translateY(-2px)}
+.btn-secondary{display:inline-flex;align-items:center;gap:8px;background:transparent;color:var(--text);padding:12px 28px;border-radius:6px;border:1px solid var(--border);font-family:'JetBrains Mono',monospace;font-size:13px;text-decoration:none;transition:all 0.2s}
+.btn-secondary:hover{border-color:var(--accent);color:var(--accent);transform:translateY(-2px)}
+.hero-visual{flex:0 0 340px}
+.terminal{background:var(--surface);border:1px solid var(--border);border-radius:12px;width:340px;overflow:hidden}
+.terminal-bar{background:var(--surface2);padding:10px 16px;display:flex;align-items:center;gap:8px;border-bottom:1px solid var(--border)}
+.dot{width:10px;height:10px;border-radius:50%}
+.dot.r{background:#ef4444}.dot.y{background:#f59e0b}.dot.g{background:#10b981}
+.terminal-title{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--muted);margin:0 auto}
+.terminal-body{padding:20px;font-family:'JetBrains Mono',monospace;font-size:12px;line-height:2}
+.t-line{display:block}
+.t-prompt{color:var(--accent3)}.t-cmd{color:var(--text)}.t-out{color:var(--muted)}.t-key{color:var(--accent)}.t-val{color:var(--warn)}
+.t-cursor{display:inline-block;width:8px;height:14px;background:var(--accent);animation:blink 1s infinite;vertical-align:-2px}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:0}}
+.stats-bar{border-top:1px solid var(--border);border-bottom:1px solid var(--border);background:var(--surface);padding:1.5rem 4rem;display:flex;justify-content:center;gap:4rem;flex-wrap:wrap}
+.stat{text-align:center}
+.stat-num{font-size:2rem;font-weight:800;color:var(--accent);font-family:'JetBrains Mono',monospace;display:block;line-height:1}
+.stat-label{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:0.1em;font-family:'JetBrains Mono',monospace;margin-top:4px;display:block}
+.section-wrap{max-width:1200px;margin:0 auto;padding:5rem 4rem}
+.section-header{margin-bottom:3rem}
+.section-tag{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--accent);letter-spacing:0.15em;text-transform:uppercase;margin-bottom:0.75rem}
+.section-tag::before{content:'// ';color:var(--muted)}
+.section-title{font-size:2.5rem;font-weight:800;letter-spacing:-0.03em;color:var(--text)}
+.section-title .hl{color:var(--accent)}
+
+/* PROJECTS */
+.projects-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(350px,1fr));gap:1.5rem}
+.project-card{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:1.75rem;transition:all 0.25s;position:relative;overflow:hidden;display:flex;flex-direction:column}
+.project-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;opacity:0;transition:opacity 0.25s}
+.project-card.c-blue::before{background:linear-gradient(90deg,#00d4ff,#7c3aed)}
+.project-card.c-green::before{background:linear-gradient(90deg,#10b981,#00d4ff)}
+.project-card.c-red::before{background:linear-gradient(90deg,#ef4444,#f59e0b)}
+.project-card.c-purple::before{background:linear-gradient(90deg,#7c3aed,#00d4ff)}
+.project-card.c-amber::before{background:linear-gradient(90deg,#f59e0b,#10b981)}
+.project-card:hover{border-color:rgba(0,212,255,0.3);transform:translateY(-4px)}
+.project-card:hover::before{opacity:1}
+.project-icon{width:48px;height:48px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:22px;margin-bottom:1rem;flex-shrink:0}
+.pi-blue{background:rgba(0,212,255,0.1)}.pi-green{background:rgba(16,185,129,0.1)}.pi-red{background:rgba(239,68,68,0.1)}.pi-purple{background:rgba(124,58,237,0.1)}.pi-amber{background:rgba(245,158,11,0.1)}
+.project-unit{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--accent);background:rgba(0,212,255,0.06);border:1px solid rgba(0,212,255,0.12);padding:3px 10px;border-radius:4px;display:inline-block;margin-bottom:0.75rem;letter-spacing:0.06em}
+.project-title{font-size:1.1rem;font-weight:700;color:var(--text);margin-bottom:0.6rem}
+.project-desc{font-size:0.87rem;color:var(--muted);line-height:1.75;margin-bottom:1.25rem;font-family:'JetBrains Mono',monospace;flex:1}
+/* highlight real detail lines */
+.detail-line{display:block;color:var(--muted);font-size:0.82rem;font-family:'JetBrains Mono',monospace;line-height:1.6;margin-bottom:0.25rem;padding-left:1rem;position:relative}
+.detail-line::before{content:'▸';position:absolute;left:0;color:var(--accent3);font-size:9px;top:4px}
+.project-tags{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:1.25rem}
+.tag{font-family:'JetBrains Mono',monospace;font-size:10px;padding:3px 10px;border-radius:4px;background:rgba(0,212,255,0.08);color:var(--accent);border:1px solid rgba(0,212,255,0.15)}
+.tag.g{background:rgba(16,185,129,0.1);color:var(--accent3);border-color:rgba(16,185,129,0.2)}
+.tag.p{background:rgba(124,58,237,0.1);color:#a78bfa;border-color:rgba(124,58,237,0.2)}
+.tag.r{background:rgba(239,68,68,0.1);color:#f87171;border-color:rgba(239,68,68,0.2)}
+.tag.a{background:rgba(245,158,11,0.1);color:#fbbf24;border-color:rgba(245,158,11,0.2)}
+.project-links{display:flex;gap:1rem;margin-top:auto}
+.proj-link{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--muted);text-decoration:none;transition:color 0.2s;display:flex;align-items:center;gap:5px}
+.proj-link:hover{color:var(--accent)}
+.proj-link svg{width:13px;height:13px}
+
+/* ACADEMIC */
+.alt-bg{background:var(--surface);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+.gpa-banner{background:linear-gradient(135deg,rgba(0,212,255,0.06),rgba(124,58,237,0.06));border:1px solid rgba(0,212,255,0.15);border-radius:12px;padding:2rem;display:flex;align-items:center;justify-content:space-between;gap:2rem;flex-wrap:wrap;margin-bottom:2rem}
+.gpa-num{font-size:3.5rem;font-weight:800;color:var(--accent);font-family:'JetBrains Mono',monospace;line-height:1;display:block}
+.gpa-label{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:0.1em;margin-top:6px;display:block}
+.gpa-stats{display:flex;gap:2rem;flex-wrap:wrap}
+.gpa-stat-num{font-family:'JetBrains Mono',monospace;font-size:1.3rem;font-weight:700;color:var(--text);display:block}
+.gpa-stat-label{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:0.1em}
+.transcript-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.5rem}
+.semester-block{background:var(--bg);border:1px solid var(--border);border-radius:10px;overflow:hidden}
+.sem-header{background:var(--surface2);padding:10px 16px;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:center}
+.sem-title{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--accent);letter-spacing:0.06em}
+.sem-badge{font-family:'JetBrains Mono',monospace;font-size:10px;padding:2px 8px;border-radius:4px}
+.sb-done{background:rgba(16,185,129,0.1);color:var(--accent3);border:1px solid rgba(16,185,129,0.2)}
+.sb-active{background:rgba(245,158,11,0.1);color:var(--warn);border:1px solid rgba(245,158,11,0.2)}
+.unit-row{display:flex;justify-content:space-between;align-items:center;padding:9px 14px;border-bottom:1px solid var(--border);font-family:'JetBrains Mono',monospace;font-size:11px}
+.unit-row:last-child{border-bottom:none}
+.unit-name{color:var(--muted);flex:1;padding-right:8px}
+.unit-now{color:var(--warn);font-size:10px;min-width:36px;text-align:right}
+
+/* SKILLS */
+.skills-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1.5rem;margin-top:2rem}
+.skill-cat-title{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--accent);text-transform:uppercase;letter-spacing:0.12em;margin-bottom:1rem;display:flex;align-items:center;gap:8px}
+.skill-cat-title::after{content:'';flex:1;height:1px;background:var(--border)}
+.skill-list{list-style:none}
+.skill-list li{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--muted);padding:5px 0;display:flex;align-items:center;gap:8px;transition:color 0.2s}
+.skill-list li:hover{color:var(--text)}
+.skill-list li::before{content:'▸';color:var(--accent3);font-size:9px;flex-shrink:0}
+.skill-bar{flex:1;height:2px;background:var(--border);border-radius:2px;overflow:hidden}
+.skill-fill{height:100%;background:linear-gradient(90deg,var(--accent3),var(--accent));border-radius:2px}
+
+/* CERTS */
+.cert-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1rem;margin-top:2rem}
+.cert-card{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:1.25rem;display:flex;align-items:flex-start;gap:1rem;transition:border-color 0.2s}
+.cert-card:hover{border-color:rgba(0,212,255,0.25)}
+.cert-icon{width:40px;height:40px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0;background:rgba(0,212,255,0.08)}
+.cert-name{font-size:0.88rem;font-weight:700;color:var(--text);margin-bottom:3px}
+.cert-issuer{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--muted)}
+.cert-status{margin-top:6px;display:inline-flex;align-items:center;gap:5px;font-family:'JetBrains Mono',monospace;font-size:10px}
+.cert-status::before{content:'●';font-size:7px}
+.cs-target{color:var(--warn)}.cs-earned{color:var(--accent3)}.cs-progress{color:var(--accent)}
+
+/* ABOUT */
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center}
+.about-text h2{font-size:2rem;font-weight:800;letter-spacing:-0.03em;margin-bottom:1rem}
+.about-text p{color:var(--muted);line-height:1.85;margin-bottom:1rem;font-size:0.95rem}
+.info-list{list-style:none;margin-top:1.5rem}
+.info-list li{display:flex;align-items:flex-start;gap:12px;padding:9px 0;border-bottom:1px solid var(--border);font-family:'JetBrains Mono',monospace;font-size:12px}
+.info-label{color:var(--muted);min-width:100px;flex-shrink:0}
+.info-val{color:var(--text)}
+.info-val a{color:var(--accent);text-decoration:none}
+.about-visual{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:2rem}
+
+/* CONTACT */
+.contact-section{background:var(--surface);border-top:1px solid var(--border)}
+.contact-inner{max-width:680px;margin:0 auto;text-align:center;padding:5rem 2rem}
+.contact-inner h2{font-size:2.5rem;font-weight:800;margin-bottom:1rem;letter-spacing:-0.03em}
+.contact-inner p{color:var(--muted);margin-bottom:2.5rem;font-size:1rem;line-height:1.8}
+.contact-links{display:flex;justify-content:center;gap:1rem;flex-wrap:wrap}
+.contact-link{display:inline-flex;align-items:center;gap:8px;padding:12px 24px;border:1px solid var(--border);border-radius:8px;text-decoration:none;font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--text);transition:all 0.2s;background:var(--bg)}
+.contact-link:hover{border-color:var(--accent);color:var(--accent);transform:translateY(-2px)}
+.contact-link svg{width:15px;height:15px;flex-shrink:0}
+footer{text-align:center;padding:2rem;font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--muted);border-top:1px solid var(--border)}
+
+/* GH SVG */
+.gh{fill:currentColor}
+
+@media(max-width:768px){nav{padding:0 1rem}.nav-links{display:none}.hero{flex-direction:column;padding:5rem 1.5rem 3rem;gap:2rem}.hero-visual{display:none}.stats-bar{padding:1.5rem 1rem;gap:1.5rem}.section-wrap{padding:3rem 1.5rem}.about-grid{grid-template-columns:1fr;gap:2rem}.projects-grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">MFH<span>@vit.edu.au</span></div>
+  <div class="nav-links">
+    <a href="#projects">Projects</a>
+    <a href="#academic">Academic</a>
+    <a href="#skills">Skills</a>
+    <a href="#certs">Certifications</a>
+    <a href="#contact">Contact</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="hero-outer">
+<section class="hero">
+  <div class="hero-content">
+    <div class="hero-badge">OPEN TO WORK · CYBER SECURITY GRADUATE</div>
+    <h1><span class="first">Md Fakrul</span><br><span class="last">Hasan</span></h1>
+    <div class="hero-role">BIT Cyber Security · Victorian Institute of Technology, Melbourne</div>
+    <p class="hero-desc">Final-semester IT student at VIT Melbourne. Hands-on experience in digital forensics, network security, penetration testing, cryptography, and IT risk management — all grounded in real university projects. Ready to contribute to a security team from day one.</p>
+    <div class="hero-cta">
+      <a href="#projects" class="btn-primary">
+        <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+        View Projects
+      </a>
+      <a href="https://www.linkedin.com/in/md-fakrul-hasan/" target="_blank" class="btn-secondary">
+        <svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
+        LinkedIn
+      </a>
+    </div>
+  </div>
+  <div class="hero-visual">
+    <div class="terminal">
+      <div class="terminal-bar">
+        <div class="dot r"></div><div class="dot y"></div><div class="dot g"></div>
+        <div class="terminal-title">fakrul@vit:~$</div>
+      </div>
+      <div class="terminal-body">
+        <span class="t-line"><span class="t-prompt">$ </span><span class="t-cmd">cat profile.json</span></span>
+        <span class="t-line t-out">{</span>
+        <span class="t-line"><span class="t-key">  "credits"</span>: <span class="t-val">"120 pts"</span>,</span>
+        <span class="t-line"><span class="t-key">  "credits"</span>: <span class="t-val">"120 pts"</span>,</span>
+        <span class="t-line"><span class="t-key">  "tools"</span>: <span class="t-val">"Autopsy,Wireshark"</span>,</span>
+        <span class="t-line"><span class="t-key">  "status"</span>: <span class="t-val">"available"</span></span>
+        <span class="t-line t-out">}</span>
+        <span class="t-line"> </span>
+        <span class="t-line"><span class="t-prompt">$ </span><span class="t-cmd">ls projects/</span></span>
+        <span class="t-line t-out">forensics/ wlan/ risk/ sql/</span>
+        <span class="t-line t-out">equifax/ pfsense/ ai-research/</span>
+        <span class="t-line"> </span>
+        <span class="t-line"><span class="t-prompt">$ </span><span class="t-cursor"></span></span>
+      </div>
+    </div>
+  </div>
+</section>
+</div>
+
+<div class="stats-bar">
+  <div class="stat"><span class="stat-num">120</span><span class="stat-label">Credit Points</span></div>
+  <div class="stat"><span class="stat-num">120</span><span class="stat-label">Credit Points</span></div>
+  <div class="stat"><span class="stat-num">7</span><span class="stat-label">Real Projects</span></div>
+  <div class="stat"><span class="stat-num">6+</span><span class="stat-label">Security Tools</span></div>
+  <div class="stat"><span class="stat-num">VIT</span><span class="stat-label">Melbourne</span></div>
+</div>
+
+<!-- PROJECTS -->
+<section id="projects">
+<div class="section-wrap">
+  <div class="section-header">
+    <div class="section-tag">University Coursework — Real Delivered Work</div>
+    <h2 class="section-title">Security <span class="hl">Projects</span></h2>
+  </div>
+  <div class="projects-grid">
+
+    <!-- PROJECT 1: Digital Forensics -->
+    <div class="project-card c-blue">
+      <div class="project-icon pi-blue">🕵️</div>
+      <div class="project-unit">ITSC3004 — Digital Forensics</div>
+      <div class="project-title">National Gallery DC Cyberattack — Forensic Investigation</div>
+      <div class="project-desc">
+        Full digital forensic investigation of a simulated targeted cyberattack on the National Gallery Washington DC. Followed a court-admissible chain-of-custody process across multiple devices and evidence types.
+        <span class="detail-line">Acquired and preserved evidence from 2 phones, 2 tablets, 1 external HDD, 1 home computer and network PCAP files — all hashed in MD5 and SHA-1</span>
+        <span class="detail-line">Used Autopsy for file system analysis, FTK Imager for logical/physical dumps, Volatility for RAM analysis, and Wireshark for TCP stream extraction and DNS query inspection</span>
+        <span class="detail-line">Recovered deleted files, extracted browser history, GPS bookmarks, email headers, and steganography-embedded documents</span>
+        <span class="detail-line">Identified USB-based malware delivery, keylogger activity (LogText), unauthorized remote access, and data exfiltration to malicious IPs</span>
+        <span class="detail-line">Reconstructed full attack timeline from 2012-07-06 to 2012-07-16 and produced a professional forensic report with threat actor mapping</span>
+      </div>
+      <div class="project-tags">
+        <span class="tag">Autopsy</span><span class="tag">FTK Imager</span><span class="tag">Wireshark</span><span class="tag g">Volatility</span><span class="tag p">RAM Analysis</span><span class="tag r">Chain of Custody</span><span class="tag a">Steganography</span>
+      </div>
+      <div class="project-links">
+        <a class="proj-link" href="https://github.com/fakrulhasan-au" target="_blank"><svg class="gh" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>GitHub</a>
+        <a class="proj-link" href="#"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>Full Report</a>
+      </div>
+    </div>
+
+    <!-- PROJECT 2: WLAN Design -->
+    <div class="project-card c-amber">
+      <div class="project-icon pi-amber">📡</div>
+      <div class="project-unit">ITNE2004 — Wireless Communication &amp; Networks</div>
+      <div class="project-title">University Campus WLAN Design — Cisco Packet Tracer</div>
+      <div class="project-desc">
+        Designed and simulated a full enterprise-grade WLAN for a university campus using Cisco's three-tier hierarchical model (Core, Distribution, Access) in Cisco Packet Tracer.
+        <span class="detail-line">Built a redundant dual-core with two Cisco 3560-24PS Layer 3 switches linked via EtherChannel, three 2960-24TT distribution switches, three access switches, and a Cisco ASA 5505 firewall</span>
+        <span class="detail-line">Deployed a WLC-PT Wireless LAN Controller managing all three access points (Academic, Residence, Outdoor) via CAPWAP tunnels for centralised security and roaming</span>
+        <span class="detail-line">Implemented four VLAN segments: Students (WPA3-Enterprise/802.1X), Staff (WPA3-Enterprise/cert), Guests (captive portal), and IoT (WPA2-PSK/MAC auth)</span>
+        <span class="detail-line">Configured QoS: DSCP EF for VoWiFi, AF41 for e-learning, bandwidth throttling for guests; non-overlapping channels (1, 6, 11) to minimise co-channel interference</span>
+        <span class="detail-line">Documented full scalability plan for Wi-Fi 6E/7 migration and phased AP refresh without infrastructure redesign</span>
+      </div>
+      <div class="project-tags">
+        <span class="tag a">Cisco Packet Tracer</span><span class="tag">WLC / CAPWAP</span><span class="tag g">WPA3-Enterprise</span><span class="tag">802.1X / RADIUS</span><span class="tag p">VLANs</span><span class="tag">QoS / DSCP</span><span class="tag r">Cisco ASA</span>
+      </div>
+      <div class="project-links">
+        <a class="proj-link" href="https://github.com/fakrulhasan-au" target="_blank"><svg class="gh" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>GitHub</a>
+        <a class="proj-link" href="#"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>Design Report</a>
+      </div>
+    </div>
+
+    <!-- PROJECT 3: EITest Risk Assessment -->
+    <div class="project-card c-red">
+      <div class="project-icon pi-red">🛡️</div>
+      <div class="project-unit">ITSC1001 — Information Systems Risk &amp; Security</div>
+      <div class="project-title">EITest Scam — Risk Assessment &amp; Business Continuity Plan</div>
+      <div class="project-desc">
+        Group security project analysing the EITest malware campaign targeting a global bank (9M+ customers, 34 countries). Produced a full threat analysis, vulnerability assessment, risk matrix, and business continuity plan.
+        <span class="detail-line">Analysed EITest attack vectors: compromised websites, malicious redirections, exploit kits (Flash, Java), phishing, and cryptocurrency miner (Coinhive Monero) payload delivery</span>
+        <span class="detail-line">Identified 6 critical vulnerabilities: unpatched web apps, insufficient network segmentation/IDS, unprotected endpoints, weak email filtering, outdated browser plugins, and inadequate incident response procedures</span>
+        <span class="detail-line">Performed business impact analysis across retail, institutional, and corporate banking functions — mapped financial, reputational, operational, and regulatory risks</span>
+        <span class="detail-line">Developed a Business Continuity Plan covering risk reduction strategies, incident response procedures, communication plan, data recovery, and staff training simulation exercises</span>
+      </div>
+      <div class="project-tags">
+        <span class="tag r">Threat Analysis</span><span class="tag">Risk Matrix</span><span class="tag g">BCP / ISO 22301</span><span class="tag p">Vulnerability Assessment</span><span class="tag a">Incident Response</span>
+      </div>
+      <div class="project-links">
+        <a class="proj-link" href="https://github.com/fakrulhasan-au" target="_blank"><svg class="gh" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>GitHub</a>
+        <a class="proj-link" href="#"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>Full Report</a>
+      </div>
+    </div>
+
+    <!-- PROJECT 4: Equifax Case Study -->
+    <div class="project-card c-purple">
+      <div class="project-icon pi-purple">🔓</div>
+      <div class="project-unit">ITSC1001 — Information Systems Risk &amp; Security</div>
+      <div class="project-title">Equifax Data Breach — Security Risk &amp; Cost Analysis</div>
+      <div class="project-desc">
+        In-depth case study and security analysis of the 2017 Equifax breach — the largest identity theft incident in history, exposing 147.9 million Americans' personal data.
+        <span class="detail-line">Traced the full attack path: Apache Struts CVE-2017-5638 exploitation (March), lateral movement through poorly segmented systems (May–July), and undetected exfiltration due to an expired SSL certificate</span>
+        <span class="detail-line">Assessed compromised assets: SSNs, birth dates, addresses, 209,000 credit card numbers, and 182,000 dispute documents</span>
+        <span class="detail-line">Identified key vulnerabilities — unpatched software, plaintext password storage, no network segmentation, weak authentication, and third-party risk</span>
+        <span class="detail-line">Quantified financial impact: $1.4B security remediation cost, $1.38B FTC settlement, £11.2M FCA fine, and Moody's credit rating downgrade</span>
+        <span class="detail-line">Produced actionable recommendations: incident response tabletop drills, MFA, patch management, network segmentation, and cybersecurity insurance</span>
+      </div>
+      <div class="project-tags">
+        <span class="tag p">CVE-2017-5638</span><span class="tag r">Data Breach Analysis</span><span class="tag">Risk Assessment</span><span class="tag g">Cost Analysis</span><span class="tag a">Apache Struts</span><span class="tag">NIST</span>
+      </div>
+      <div class="project-links">
+        <a class="proj-link" href="https://github.com/fakrulhasan-au" target="_blank"><svg class="gh" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>GitHub</a>
+        <a class="proj-link" href="#"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>Case Study</a>
+      </div>
+    </div>
+
+    <!-- PROJECT 5: SQL Database -->
+    <div class="project-card c-green">
+      <div class="project-icon pi-green">🗄️</div>
+      <div class="project-unit">ITDA1001 — Database Fundamentals</div>
+      <div class="project-title">Video Rental Database — Normalisation &amp; SQL Implementation</div>
+      <div class="project-desc">
+        Designed and implemented a fully normalised relational database for a video rental system, demonstrating data integrity, security principles, and SQL query skills.
+        <span class="detail-line">Normalised two datasets (Sales Performance, Employee Information) from raw form through 1NF → 2NF → 3NF, eliminating redundancy and transitive dependencies</span>
+        <span class="detail-line">Designed a 6-table relational schema: Customers, Videos, VideoCopy, Rent, RentDetails, Charge — with correct PKs, FKs, and referential integrity constraints</span>
+        <span class="detail-line">Wrote full SQL DDL (CREATE TABLE) and DML (INSERT) scripts, plus complex SELECT queries with JOINs, GROUP BY, LIKE, BETWEEN, and CREATE VIEW</span>
+        <span class="detail-line">Documented database security: implemented Role-Based Access Control (RBAC), column-level security, stored procedure permissions, and SQL injection prevention via parameterised queries</span>
+      </div>
+      <div class="project-tags">
+        <span class="tag g">SQL</span><span class="tag">Database Normalisation</span><span class="tag">1NF / 2NF / 3NF</span><span class="tag p">RBAC</span><span class="tag a">SQL Injection Prevention</span>
+      </div>
+      <div class="project-links">
+        <a class="proj-link" href="https://github.com/fakrulhasan-au" target="_blank"><svg class="gh" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>GitHub</a>
+        <a class="proj-link" href="#"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>SQL Scripts</a>
+      </div>
+    </div>
+
+
+    <!-- PROJECT 6: pfSense Network Security Lab -->
+    <div class="project-card c-green">
+      <div class="project-icon pi-green">🔥</div>
+      <div class="project-unit">ITNE2002 — Network &amp; Information Security</div>
+      <div class="project-title">pfSense Firewall, Snort IDS &amp; Squid Proxy — Home Lab</div>
+      <div class="project-desc">
+        Configured and secured a virtual network environment using pfSense as the gateway/firewall, Snort as an IDS/IPS, and Squid as a proxy server — all running inside VirtualBox VMs with Kali Linux and Windows 10.
+        <span class="detail-line">Configured a 3-node virtual topology: pfSense (192.168.100.1/24 LAN gateway), Kali Linux (192.168.100.100/24), and Windows 10 (192.168.100.101/24 with proxy at 192.168.100.1)</span>
+        <span class="detail-line">Installed and configured Snort on pfSense's LAN interface with emerging-scan, emerging-malware, and emerging-policy rulesets; verified detection by triggering alerts via <code>nmap -sn 192.168.100.0/24</code> ping sweep from Kali Linux</span>
+        <span class="detail-line">Configured Squid Transparent HTTP Proxy with URL blacklisting — blocked facebook.com network-wide and confirmed access-denied response on Windows VM</span>
+        <span class="detail-line">Created pfSense LAN firewall rules to block ICMP Echo Requests (ping sweeps) from the Kali host — verified with 100% packet loss on <code>ping 192.168.100.1</code>, preventing network reconnaissance</span>
+        <span class="detail-line">Demonstrated layered defence-in-depth: IDS detection (Snort) + web content filtering (Squid) + ICMP blocking (firewall rules) working in combination</span>
+      </div>
+      <div class="project-tags">
+        <span class="tag g">pfSense</span><span class="tag r">Snort IDS/IPS</span><span class="tag">Squid Proxy</span><span class="tag p">VirtualBox</span><span class="tag">Kali Linux</span><span class="tag a">Firewall Rules</span><span class="tag">ICMP / Nmap</span>
+      </div>
+      <div class="project-links">
+        <a class="proj-link" href="https://github.com/fakrulhasan-au" target="_blank"><svg class="gh" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>GitHub</a>
+        <a class="proj-link" href="#"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>Lab Report</a>
+      </div>
+    </div>
+
+    <!-- PROJECT 7: AI in Healthcare Research -->
+    <div class="project-card c-purple">
+      <div class="project-icon pi-purple">🧠</div>
+      <div class="project-unit">ITSU3010 — Research Methodology · Group Leader</div>
+      <div class="project-title">AI in Healthcare Decision-Making — Mixed-Methods Research</div>
+      <div class="project-desc">
+        Led a 4-person research team (as Group Leader) investigating how AI can enhance clinical decision-making in healthcare, with a focus on data privacy, algorithmic bias, and system integration challenges.
+        <span class="detail-line">Directed full project lifecycle: topic selection, team role allocation, 12-week schedule management, and final IEEE-formatted report — from proposal through to submitted research paper</span>
+        <span class="detail-line">Designed a mixed-methods approach: qualitative semi-structured interviews and focus groups with healthcare/IT professionals; quantitative online survey of 50 healthcare professionals using 5-point Likert scales</span>
+        <span class="detail-line">Analysed data using SPSS v29 (descriptive statistics and regression) for quantitative findings; NVivo for thematic analysis of qualitative data; Python (pandas, matplotlib) for data validation and visualisation</span>
+        <span class="detail-line">Key findings: AI image-recognition tools reduced diagnostic errors by 20–30%; over 70% of participants expressed concern about data misuse; Explainable AI (XAI) identified as critical for clinician trust and adoption</span>
+        <span class="detail-line">Produced recommendations aligned with WHO AI ethics guidance and FHIR interoperability standards for sustainable AI deployment in healthcare organisations</span>
+      </div>
+      <div class="project-tags">
+        <span class="tag p">Mixed-Methods Research</span><span class="tag">SPSS v29</span><span class="tag g">Python / NVivo</span><span class="tag">IEEE Format</span><span class="tag a">AI Ethics / XAI</span><span class="tag r">WHO Guidelines</span>
+      </div>
+      <div class="project-links">
+        <a class="proj-link" href="https://github.com/fakrulhasan-au" target="_blank"><svg class="gh" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>GitHub</a>
+        <a class="proj-link" href="#"><svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>Research Paper</a>
+      </div>
+    </div>
+
+  </div>
+</div>
+</section>
+
+<!-- ACADEMIC -->
+<section id="academic" class="alt-bg">
+<div class="section-wrap">
+  <div class="section-header">
+    <div class="section-tag">Victorian Institute of Technology · Student ID: 55926</div>
+    <h2 class="section-title">Academic <span class="hl">Record</span></h2>
+  </div>
+  <div class="gpa-banner">
+    <div>
+      <span class="gpa-num">120</span>
+      <span class="gpa-label">Credit Points Attained</span>
+    </div>
+    <div class="gpa-stats">
+      <div><span class="gpa-stat-num">20</span><span class="gpa-stat-label">Units Done</span></div>
+      <div><span class="gpa-stat-num">BIT</span><span class="gpa-stat-label">Cyber Security</span></div>
+      <div><span class="gpa-stat-num">2026</span><span class="gpa-stat-label">Final Semester</span></div>
+    </div>
+  </div>
+  <div class="transcript-grid">
+
+    <div class="semester-block">
+      <div class="sem-header"><span class="sem-title">Semester 2 (Mid) 2023</span><span class="sem-badge sb-done">Complete</span></div>
+      <div class="unit-row"><span class="unit-name">Database Fundamentals</span></div>
+      <div class="unit-row"><span class="unit-name">Software Dev Fundamentals</span></div>
+      <div class="unit-row"><span class="unit-name">IT Professional Practice</span></div>
+      <div class="unit-row"><span class="unit-name">Intro to Computer Systems &amp; Networking</span></div>
+    </div>
+
+    <div class="semester-block">
+      <div class="sem-header"><span class="sem-title">Semester 1 2024</span><span class="sem-badge sb-done">Complete</span></div>
+      <div class="unit-row"><span class="unit-name">Information Systems Risk &amp; Security</span></div>
+      <div class="unit-row"><span class="unit-name">Computational Mathematics</span></div>
+      <div class="unit-row"><span class="unit-name">Business Communication for IT Professionals</span></div>
+      <div class="unit-row"><span class="unit-name">Network Architecture</span></div>
+    </div>
+
+    <div class="semester-block">
+      <div class="sem-header"><span class="sem-title">Semester 2 2024</span><span class="sem-badge sb-done">Complete</span></div>
+      <div class="unit-row"><span class="unit-name">IT Project Management</span></div>
+      <div class="unit-row"><span class="unit-name">Security Threat Management</span></div>
+      <div class="unit-row"><span class="unit-name">Network &amp; Information Security</span></div>
+      <div class="unit-row"><span class="unit-name">Systems Analysis &amp; Design</span></div>
+    </div>
+
+    <div class="semester-block">
+      <div class="sem-header"><span class="sem-title">Semester 1 2025</span><span class="sem-badge sb-done">Complete</span></div>
+      <div class="unit-row"><span class="unit-name">Cyber Security Law, Policies &amp; Ethics</span></div>
+      <div class="unit-row"><span class="unit-name">Network Security Implementation</span></div>
+      <div class="unit-row"><span class="unit-name">Digital Forensics</span></div>
+      <div class="unit-row"><span class="unit-name">Cryptography Algorithms &amp; Implementation</span></div>
+    </div>
+
+    <div class="semester-block">
+      <div class="sem-header"><span class="sem-title">Semester 2 2025</span><span class="sem-badge sb-done">Complete</span></div>
+      <div class="unit-row"><span class="unit-name">Professional Project 1</span></div>
+      <div class="unit-row"><span class="unit-name">Developing Data Access Solutions</span></div>
+      <div class="unit-row"><span class="unit-name">Design Network Infrastructure</span></div>
+      <div class="unit-row"><span class="unit-name">Research Methodology</span></div>
+    </div>
+
+    <div class="semester-block">
+      <div class="sem-header"><span class="sem-title">Semester 1 2026 — Final</span><span class="sem-badge sb-active">Currently Enrolled</span></div>
+      <div class="unit-row"><span class="unit-name">Server Administration Fundamentals</span><span class="unit-now">NOW</span></div>
+      <div class="unit-row"><span class="unit-name">Wireless Communication &amp; Networks</span><span class="unit-now">NOW</span></div>
+      <div class="unit-row"><span class="unit-name">Penetration Testing &amp; Countermeasures</span><span class="unit-now">NOW</span></div>
+      <div class="unit-row"><span class="unit-name">Professional Project 2</span><span class="unit-now">NOW</span></div>
+    </div>
+
+  </div>
+</div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+<div class="section-wrap">
+  <div class="section-header">
+    <div class="section-tag">Technical Arsenal</div>
+    <h2 class="section-title">Skills &amp; <span class="hl">Tools</span></h2>
+  </div>
+  <div class="skills-grid">
+    <div>
+      <div class="skill-cat-title">Security</div>
+      <ul class="skill-list">
+        <li>Digital Forensics<div class="skill-bar"><div class="skill-fill" style="width:88%"></div></div></li>
+        <li>Network Security<div class="skill-bar"><div class="skill-fill" style="width:85%"></div></div></li>
+        <li>Risk Assessment<div class="skill-bar"><div class="skill-fill" style="width:82%"></div></div></li>
+        <li>Penetration Testing<div class="skill-bar"><div class="skill-fill" style="width:75%"></div></div></li>
+        <li>Cryptography<div class="skill-bar"><div class="skill-fill" style="width:80%"></div></div></li>
+      </ul>
+    </div>
+    <div>
+      <div class="skill-cat-title">Tools</div>
+      <ul class="skill-list">
+        <li>Autopsy / FTK Imager<div class="skill-bar"><div class="skill-fill" style="width:85%"></div></div></li>
+        <li>Wireshark<div class="skill-bar"><div class="skill-fill" style="width:83%"></div></div></li>
+        <li>Cisco Packet Tracer<div class="skill-bar"><div class="skill-fill" style="width:85%"></div></div></li>
+        <li>pfSense / Snort / Squid<div class="skill-bar"><div class="skill-fill" style="width:80%"></div></div></li>
+        <li>Volatility / Nmap<div class="skill-bar"><div class="skill-fill" style="width:75%"></div></div></li>
+      </ul>
+    </div>
+    <div>
+      <div class="skill-cat-title">Development</div>
+      <ul class="skill-list">
+        <li>SQL<div class="skill-bar"><div class="skill-fill" style="width:80%"></div></div></li>
+        <li>Python<div class="skill-bar"><div class="skill-fill" style="width:72%"></div></div></li>
+        <li>Bash / Shell<div class="skill-bar"><div class="skill-fill" style="width:65%"></div></div></li>
+        <li>Database Design<div class="skill-bar"><div class="skill-fill" style="width:78%"></div></div></li>
+      </ul>
+    </div>
+    <div>
+      <div class="skill-cat-title">Frameworks</div>
+      <ul class="skill-list">
+        <li>NIST CSF<div class="skill-bar"><div class="skill-fill" style="width:78%"></div></div></li>
+        <li>ISO 22301 / 27001<div class="skill-bar"><div class="skill-fill" style="width:72%"></div></div></li>
+        <li>OWASP Top 10<div class="skill-bar"><div class="skill-fill" style="width:75%"></div></div></li>
+        <li>MITRE ATT&amp;CK<div class="skill-bar"><div class="skill-fill" style="width:68%"></div></div></li>
+        <li>Cyber Security Law &amp; Ethics<div class="skill-bar"><div class="skill-fill" style="width:73%"></div></div></li>
+      </ul>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- CERTS -->
+<section id="certs" class="alt-bg">
+<div class="section-wrap">
+  <div class="section-header">
+    <div class="section-tag">Credentials</div>
+    <h2 class="section-title">Certifications &amp; <span class="hl">Goals</span></h2>
+  </div>
+  <div class="cert-grid">
+    <div class="cert-card"><div class="cert-icon">🎓</div><div><div class="cert-name">Bachelor of IT — Cyber Security</div><div class="cert-issuer">Victorian Institute of Technology · Melbourne</div><div class="cert-status cs-earned">Completing Final Semester 2026</div></div></div>
+    <div class="cert-card"><div class="cert-icon">🔒</div><div><div class="cert-name">CompTIA Security+</div><div class="cert-issuer">CompTIA · Industry Standard Entry-Level</div><div class="cert-status cs-target">Priority #1 Target</div></div></div>
+    <div class="cert-card"><div class="cert-icon">🌐</div><div><div class="cert-name">Google Cybersecurity Certificate</div><div class="cert-issuer">Google / Coursera</div><div class="cert-status cs-progress">In Progress</div></div></div>
+    <div class="cert-card"><div class="cert-icon">🔴</div><div><div class="cert-name">TryHackMe — Jr Penetration Tester</div><div class="cert-issuer">TryHackMe Platform</div><div class="cert-status cs-progress">In Progress</div></div></div>
+    <div class="cert-card"><div class="cert-icon">⚡</div><div><div class="cert-name">eJPT — Junior Pen Tester</div><div class="cert-issuer">INE / eLearnSecurity</div><div class="cert-status cs-target">Target 2026</div></div></div>
+    <div class="cert-card"><div class="cert-icon">🛡️</div><div><div class="cert-name">Cisco CyberOps Associate</div><div class="cert-issuer">Cisco Networking Academy</div><div class="cert-status cs-target">Target 2026</div></div></div>
+  </div>
+</div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+<div class="section-wrap">
+  <div class="about-grid">
+    <div class="about-text">
+      <div class="section-tag" style="margin-bottom:0.75rem">Who I Am</div>
+      <h2>About <span style="color:var(--accent)">Fakrul</span></h2>
+      <p>I'm a final-semester IT student at Victorian Institute of Technology (VIT) Melbourne, specialising in Cyber Security — completing my Bachelor of Information Technology in mid-2026.</p>
+      <p>My portfolio is built entirely from real university work: a full digital forensic investigation using Autopsy, FTK and Wireshark; an enterprise WLAN designed in Cisco Packet Tracer with WPA3 and 802.1X; detailed threat analyses of real-world breaches like Equifax; and a complete SQL database with security controls built in.</p>
+      <p>I'm actively seeking my first role in cybersecurity in Melbourne — SOC Analyst, Junior Penetration Tester, IT Security Analyst, or a graduate program. I bring real skills, genuine curiosity, and the drive to keep learning every day.</p>
+      <ul class="info-list">
+        <li><span class="info-label">Institution</span><span class="info-val">VIT — Victorian Institute of Technology, Melbourne</span></li>
+        <li><span class="info-label">Degree</span><span class="info-val">Bachelor of IT — Cyber Security</span></li>
+        <li><span class="info-label">Enrolled</span><span class="info-val">11 September 2023</span></li>
+        <li><span class="info-label">Credits</span><span class="info-val">120 credit points · 20 units completed</span></li>
+        <li><span class="info-label">Status</span><span class="info-val" style="color:var(--accent3)">● Final Semester · Open to Work</span></li>
+        <li><span class="info-label">Location</span><span class="info-val">Melbourne, Victoria, Australia</span></li>
+        <li><span class="info-label">Email</span><span class="info-val"><a href="mailto:fakrul.ishrad@gmail.com">fakrul.ishrad@gmail.com</a></span></li>
+        <li><span class="info-label">LinkedIn</span><span class="info-val"><a href="https://www.linkedin.com/in/md-fakrul-hasan/" target="_blank">linkedin.com/in/md-fakrul-hasan</a></span></li>
+        <li><span class="info-label">GitHub</span><span class="info-val"><a href="https://github.com/fakrulhasan-au" target="_blank">github.com/fakrulhasan-au</a></span></li>
+      </ul>
+    </div>
+    <div class="about-visual">
+      <svg viewBox="0 0 300 300" width="100%" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="150" cy="150" r="120" fill="none" stroke="#1e2d4a" stroke-width="1"/>
+        <circle cx="150" cy="150" r="90" fill="none" stroke="#1e2d4a" stroke-width="1"/>
+        <circle cx="150" cy="150" r="60" fill="none" stroke="#1e2d4a" stroke-width="1"/>
+        <circle cx="150" cy="150" r="30" fill="none" stroke="#1e2d4a" stroke-width="1"/>
+        <line x1="150" y1="30" x2="150" y2="270" stroke="#1e2d4a" stroke-width="0.5"/>
+        <line x1="30" y1="150" x2="270" y2="150" stroke="#1e2d4a" stroke-width="0.5"/>
+        <line x1="65" y1="65" x2="235" y2="235" stroke="#1e2d4a" stroke-width="0.5"/>
+        <line x1="235" y1="65" x2="65" y2="235" stroke="#1e2d4a" stroke-width="0.5"/>
+        <!-- Forensics=88%, WLAN=85%, RiskMgmt=82%, SQL=80%, PenTest=75%, CyberLaw=73% -->
+        <polygon points="150,44 226,100 218,190 150,210 82,190 74,100" fill="rgba(0,212,255,0.12)" stroke="#00d4ff" stroke-width="1.5"/>
+        <circle cx="150" cy="44" r="4" fill="#00d4ff"/>
+        <circle cx="226" cy="100" r="4" fill="#00d4ff"/>
+        <circle cx="218" cy="190" r="4" fill="#00d4ff"/>
+        <circle cx="150" cy="210" r="4" fill="#00d4ff"/>
+        <circle cx="82" cy="190" r="4" fill="#00d4ff"/>
+        <circle cx="74" cy="100" r="4" fill="#00d4ff"/>
+        <text x="150" y="24" text-anchor="middle" fill="#64748b" font-size="10" font-family="JetBrains Mono,monospace">Forensics</text>
+        <text x="250" y="103" text-anchor="start" fill="#64748b" font-size="10" font-family="JetBrains Mono,monospace">WLAN</text>
+        <text x="242" y="198" text-anchor="start" fill="#64748b" font-size="10" font-family="JetBrains Mono,monospace">Risk Mgmt</text>
+        <text x="150" y="232" text-anchor="middle" fill="#64748b" font-size="10" font-family="JetBrains Mono,monospace">SQL / DB</text>
+        <text x="48" y="198" text-anchor="end" fill="#64748b" font-size="10" font-family="JetBrains Mono,monospace">PenTest</text>
+        <text x="48" y="103" text-anchor="end" fill="#64748b" font-size="10" font-family="JetBrains Mono,monospace">Cyber Law</text>
+        <text x="150" y="146" text-anchor="middle" fill="#00d4ff" font-size="13" font-family="JetBrains Mono,monospace" font-weight="700">CYBER SEC</text>
+        <text x="150" y="164" text-anchor="middle" fill="#64748b" font-size="10" font-family="JetBrains Mono,monospace">VIT Melbourne</text>
+      </svg>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" class="contact-section">
+  <div class="contact-inner">
+    <div class="section-tag" style="margin-bottom:1rem">Let's Connect</div>
+    <h2>Ready to <span style="color:var(--accent)">Hire?</span></h2>
+    <p>Actively seeking entry-level cybersecurity roles across Melbourne and Australia — SOC Analyst, Junior Penetration Tester, IT Security Analyst, Security Operations, or graduate programs. Let's talk.</p>
+    <div class="contact-links">
+      <a class="contact-link" href="mailto:fakrul.ishrad@gmail.com">
+        <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        fakrul.ishrad@gmail.com
+      </a>
+      <a class="contact-link" href="https://www.linkedin.com/in/md-fakrul-hasan/" target="_blank">
+        <svg fill="currentColor" viewBox="0 0 24 24"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
+        LinkedIn
+      </a>
+      <a class="contact-link" href="https://github.com/fakrulhasan-au" target="_blank">
+        <svg class="gh" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+        GitHub
+      </a>
+    </div>
+  </div>
+</section>
+
+<footer>Md Fakrul Hasan · BIT Cyber Security · VIT Melbourne · <span style="color:var(--accent)">Open to work 2026</span> · fakrul.ishrad@gmail.com</footer>
+
+</body>
+</html>
